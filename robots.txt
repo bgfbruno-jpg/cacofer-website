@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /security/
+Disallow: /docker/
+Disallow: /*.sql$
+Disallow: /*.env$
+
+Sitemap: https://cacofer.com.br/sitemap.xml
