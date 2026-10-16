@@ -48,23 +48,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (mobileToggle && mainNav) {
     mobileToggle.addEventListener("click", () => {
-      const isVisible = mainNav.style.display === "flex";
-      mainNav.style.display = isVisible ? "none" : "flex";
-      mainNav.style.flexDirection = "column";
-      mainNav.style.position = "absolute";
-      mainNav.style.top = "72px";
-      mainNav.style.left = "0";
-      mainNav.style.width = "100%";
-      mainNav.style.background = "#0c121e";
-      mainNav.style.padding = "20px";
-      mainNav.style.borderBottom = "1px solid rgba(255, 255, 255, 0.1)";
+      const isOpen = mainNav.classList.toggle("is-open");
+      mobileToggle.setAttribute("aria-expanded", isOpen);
+      mobileToggle.textContent = isOpen ? "✕" : "☰";
     });
 
     // Close menu on link click
-    mainNav.querySelectorAll(".nav-link").forEach((link) => {
+    mainNav.querySelectorAll(".nav-link, .nav-cta-btn").forEach((link) => {
       link.addEventListener("click", () => {
         if (window.innerWidth <= 768) {
-          mainNav.style.display = "none";
+          mainNav.classList.remove("is-open");
+          mobileToggle.textContent = "☰";
+          mobileToggle.setAttribute("aria-expanded", "false");
         }
       });
     });
