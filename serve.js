@@ -19,7 +19,24 @@ const MIME_TYPES = {
   '.xml': 'application/xml; charset=utf-8'
 };
 
+// Global error handler to prevent server crashes on socket disconnects
+process.on('uncaughtException', (err) => {
+  console.error('[Cacofer Server] Uncaught Exception:', err.message);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('[Cacofer Server] Unhandled Rejection:', reason);
+});
+
 const server = http.createServer((req, res) => {
+  req.on('error', (err) => {
+    console.warn('[Cacofer Server] Request error:', err.message);
+  });
+
+  res.on('error', (err) => {
+    console.warn('[Cacofer Server] Response error:', err.message);
+  });
+
   // Cybersecurity headers
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -61,7 +78,16 @@ const server = http.createServer((req, res) => {
 
     console.log(`[200 OK] ${req.method} ${req.url} (${contentType})`);
     res.writeHead(200, { 'Content-Type': contentType });
+
     const stream = fs.createReadStream(filePath);
+    stream.on('error', (streamErr) => {
+      console.warn('[Cacofer Server] Stream error:', streamErr.message);
+      if (!res.headersSent) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+      }
+      res.end();
+    });
+
     stream.pipe(res);
   });
 });
