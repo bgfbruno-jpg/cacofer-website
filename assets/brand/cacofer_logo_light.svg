@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 76" fill="none">
+  <defs>
+    <linearGradient id="cacoferGradLight" x1="100%" y1="15%" x2="0%" y2="85%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="25%" stop-color="#a855f7"/>
+      <stop offset="50%" stop-color="#f43f5e"/>
+      <stop offset="75%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(6, 6) scale(0.64)">
+    <path d="M 72 23 H 48 C 30 23 18 34 18 50 C 18 66 30 77 48 77 H 72" 
+          stroke="url(#cacoferGradLight)" 
+          stroke-width="8.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    <circle cx="73" cy="23" r="13" stroke="url(#cacoferGradLight)" stroke-width="7" fill="#FFFFFF"/>
+    <circle cx="18" cy="50" r="14" stroke="url(#cacoferGradLight)" stroke-width="7.5" fill="#FFFFFF"/>
+    <circle cx="73" cy="77" r="13" stroke="url(#cacoferGradLight)" stroke-width="7" fill="#FFFFFF"/>
+  </g>
+
+  <text x="82" y="38" 
+        font-family="'Outfit', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" 
+        font-size="29" 
+        font-weight="800" 
+        letter-spacing="0.04em" 
+        fill="#0B1E3E">CACOFER</text>
+
+  <text x="83" y="58" 
+        font-family="'Outfit', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" 
+        font-size="12.5" 
+        font-weight="400" 
+        letter-spacing="0.38em" 
+        fill="#475569">TECNOLOGIA</text>
+</svg>

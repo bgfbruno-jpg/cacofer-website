@@ -297,6 +297,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lastSubmissionTime = now;
 
+      // Dual Capture: Asynchronously persist lead into Cacofer CRM database via /api/lead
+      try {
+        fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            full_name: cleanName,
+            company_name: cleanCompany,
+            phone: cleanPhone,
+            segment: cleanSegment,
+            submitted_at: new Date().toISOString(),
+            source: "WEBSITE_FORM"
+          })
+        }).catch((err) => {
+          console.warn("[CRM Capture Note] Async background sync dispatched:", err);
+        });
+      } catch (e) {}
+
       // Construct encrypted/sanitized message for direct WhatsApp connection
       const whatsAppMessage = encodeURIComponent(
         `Olá, Bruno! Gostaria de agendar uma demonstração gratuita da Concierge IA da Cacofer Tecnologia.\n\n` +
@@ -307,14 +325,14 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       // Primary destination: Cacofer Official WhatsApp (Bruno)
-      const officialPhone = "5521995260032";
+      const officialPhone = "5521988964486";
       const targetUrl = `https://wa.me/${officialPhone}?text=${whatsAppMessage}`;
 
-      displayFormMessage("Diagnóstico enviado com sucesso! Redirecionando para o WhatsApp oficial...", "success");
+      displayFormMessage("Diagnóstico recebido com sucesso! Abrindo WhatsApp oficial da Cacofer Tecnologia...", "success");
 
       setTimeout(() => {
         window.open(targetUrl, "_blank", "noopener,noreferrer");
-      }, 1200);
+      }, 1000);
     });
   }
 
