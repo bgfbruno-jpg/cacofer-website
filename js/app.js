@@ -84,34 +84,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const SIMULATOR_SCENARIOS = {
     agendamento: {
-      userText: "Olá! Gostaria de saber valores do botox e se tem horário pra amanhã.",
+      userText: "Olá! Gostaria de saber valores do procedimento e se tem horário pra amanhã.",
       isAudio: false,
       botResponse:
-        "Boa tarde! Tudo bem? Sou a Sofia, concierge da clínica. O procedimento depende de avaliação prévia da Dra. Nossa consulta de avaliação é R$ 150 (100% dedutível se realizar o tratamento). Tenho vaga para amanhã às 14h ou sexta às 10h, qual fica melhor para você?",
+        "Boa tarde! Tudo bem? Sou a concierge de Inteligência Artificial da clínica. O procedimento depende de avaliação prévia. Nossa consulta de avaliação é R$ 150 (100% dedutível se realizar o tratamento). Tenho vaga para amanhã às 14h ou sexta às 10h, qual fica melhor para você?",
     },
     audio: {
-      userText: "🎙️ [Áudio de 18s]: 'Oi Sofia, moro longe, como faço para chegar de carro e onde estaciono?'",
+      userText: "🎙️ [Áudio de 18s]: 'Oi, boa tarde! Moro um pouco longe, como faço para chegar de carro e onde estaciono?'",
       isAudio: true,
       botResponse:
-        "Olá! Nosso espaço fica no Edifício Prime Design Offices, na Estrada Coronel Pedro Corrêa, 740 (Sala 327) - Barra Olímpica. O prédio conta com estacionamento rotativo com manobrista e segurança 24h. Seguem os links direto do Waze e Google Maps para você abrir agora no GPS!",
+        "Olá! Nossa clínica fica no Centro Empresarial Medical Center, na Av. das Américas, 500 (Bloco 2, Sala 302). O edifício conta com estacionamento rotativo com manobrista e segurança 24h. Seguem os links diretos do Google Maps e Waze para você abrir no GPS!",
     },
     humano: {
-      userText: "Quero tirar uma dúvida urgente com a doutora direto.",
+      userText: "Quero tirar uma dúvida urgente com a especialista direto.",
       isAudio: false,
       botResponse:
-        "Com certeza! Notifiquei a Dra. Edna no WhatsApp pessoal dela com o resumo da conversa e pausei meu atendimento. Ela vai te responder por aqui em instantes!",
+        "Com certeza! Notifiquei a especialista responsável no WhatsApp pessoal dela com o resumo da nossa conversa e pausei meu atendimento. Ela vai te responder por aqui em instantes!",
     },
     regua: {
       userText: "Oi, recebi a mensagem de confirmação da minha consulta de amanhã. Tá confirmadíssimo!",
       isAudio: false,
       botResponse:
-        "Perfeito! Presença confirmada para amanhã às 14h na agenda da Dra. Edna! Venha com a pele limpa e evite álcool hoje. Estacionamento rotativo no local. Até amanhã!",
+        "Perfeito! Presença confirmada para amanhã às 14h na agenda médica! Venha com a pele limpa e evite álcool hoje. O local conta com estacionamento rotativo. Até amanhã!",
     },
     noturno: {
       userText: "Boa noite! É meia-noite mas queria já deixar marcado antes de esquecer amanhã cedo.",
       isAudio: false,
       botResponse:
-        "Boa noite! Que ótimo que entrou em contato! Já consultei a grade ao vivo da Dra. Edna. Tenho horário disponível amanhã às 10h ou às 15h30, qual prefere que eu reserve para você?",
+        "Boa noite! Que ótimo que entrou em contato! Já consultei a grade ao vivo da clínica. Tenho horário disponível amanhã às 10h ou às 15h30, qual prefere que eu reserve para você?",
     },
     cancelamento: {
       userText: "Tive um imprevisto e preciso desmarcar meu horário de amanhã.",
