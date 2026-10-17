@@ -27,7 +27,7 @@
   <link rel="alternate icon" type="image/svg+xml" href="assets/brand/favicon.svg">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=4.2">
+  <link rel="stylesheet" href="css/style.css?v=4.3">
 </head>
 <body>
 
@@ -111,56 +111,10 @@
         <!-- HERO VISUAL ENGINE & SMARTPHONE SIMULATOR -->
         <div class="hero-visual-engine" id="simulador">
           <!-- Ambient Glow & Circuit SVGs -->
+          <!-- Ambient Radial Halo Glow -->
           <div class="engine-radial-glow" aria-hidden="true"></div>
-          
-          <svg class="engine-circuit-svg" viewBox="0 0 520 580" fill="none" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8"/>
-                <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.8"/>
-              </linearGradient>
-            </defs>
-            <path class="circuit-flow flow-top" d="M 20 90 C 140 30, 220 130, 310 90 C 380 60, 440 120, 500 70" />
-            <path class="circuit-flow flow-bottom" d="M 30 490 C 140 540, 230 440, 320 480 C 400 520, 450 460, 500 500" />
-          </svg>
 
-          <!-- Floating Interactive Badges with Physics Levitation (hs-float) -->
-          <div class="floating-badge badge-audio" title="Compreensão neural de voz">
-            <div class="badge-icon sound-wave-icon">
-              <span class="wave-bar bar-1"></span>
-              <span class="wave-bar bar-2"></span>
-              <span class="wave-bar bar-3"></span>
-              <span class="wave-bar bar-4"></span>
-            </div>
-            <div class="badge-info">
-              <span class="badge-tag">Áudio Fonético</span>
-              <span class="badge-text">Transcrito em 1.2s</span>
-            </div>
-          </div>
-
-          <div class="floating-badge badge-calendar" title="Sincronização instantânea na agenda">
-            <div class="badge-icon calendar-icon">
-              <span class="pulse-dot-green"></span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <div class="badge-info">
-              <span class="badge-tag">Google Calendar</span>
-              <span class="badge-text">Zero Conflito</span>
-            </div>
-          </div>
-
-          <div class="floating-badge badge-speed" title="Tempo de resposta ultra-rápido">
-            <div class="badge-icon speed-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            </div>
-            <div class="badge-info">
-              <span class="badge-tag">Latência Média</span>
-              <span class="badge-text">2.8 Segundos</span>
-            </div>
-          </div>
-
-          <!-- PHONE MOCKUP -->
+          <!-- PHONE MOCKUP (100% CLEAN & UNOBSTRUCTED) -->
           <div class="phone-mockup">
             <div class="phone-screen">
               <div class="phone-header">
@@ -214,11 +168,41 @@
             </div>
           </div>
 
-          <!-- MOBILE STATUS PILLS BAR (Visible only on tablets/mobile <= 1080px) -->
-          <div class="mobile-sim-pills" aria-hidden="true">
-            <span class="mobile-pill">🎙️ Áudio Fonético 1.2s</span>
-            <span class="mobile-pill">📅 Google Calendar</span>
-            <span class="mobile-pill">⚡ Latência 2.8s</span>
+          <!-- SIMULATOR PERFORMANCE DOCK (Clean, unobstructed telemetry base) -->
+          <div class="sim-performance-dock">
+            <div class="sim-dock-pill" title="Transcrição instantânea e neural de mensagens de áudio">
+              <div class="dock-pill-icon sound-wave-icon">
+                <span class="wave-bar bar-1"></span>
+                <span class="wave-bar bar-2"></span>
+                <span class="wave-bar bar-3"></span>
+                <span class="wave-bar bar-4"></span>
+              </div>
+              <div class="dock-pill-info">
+                <span class="dock-pill-tag">Áudio Fonético</span>
+                <span class="dock-pill-val">Transcrito em 1.2s</span>
+              </div>
+            </div>
+
+            <div class="sim-dock-pill" title="Sincronização em tempo real na agenda oficial">
+              <div class="dock-pill-icon calendar-icon">
+                <span class="pulse-dot-green"></span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div class="dock-pill-info">
+                <span class="dock-pill-tag">Google Calendar</span>
+                <span class="dock-pill-val">Zero Conflito</span>
+              </div>
+            </div>
+
+            <div class="sim-dock-pill" title="Tempo de resposta ultra-rápido da IA">
+              <div class="dock-pill-icon speed-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="dock-pill-info">
+                <span class="dock-pill-tag">Latência Média</span>
+                <span class="dock-pill-val">2.8 Segundos</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -791,6 +775,6 @@
   </footer>
 
   <!-- Core App Logic -->
-  <script src="js/app.js?v=4.2"></script>
+  <script src="js/app.js?v=4.3"></script>
 </body>
 </html>

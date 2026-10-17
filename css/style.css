@@ -1417,28 +1417,17 @@ a {
     margin-top: 6px;
   }
 
-  /* Safe boundaries for visual engine on intermediate viewports */
-  .floating-badge {
-    display: none !important;
-  }
-
-  .engine-circuit-svg {
-    display: none !important;
+  /* Simulator performance dock on intermediate viewports */
+  .sim-performance-dock {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
   }
 
   .engine-radial-glow {
     width: 100%;
     height: 100%;
     filter: blur(25px);
-  }
-
-  .mobile-sim-pills {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-    width: 100%;
   }
 }
 
@@ -1638,6 +1627,31 @@ a {
     font-size: 0.7rem;
     padding: 8px;
     line-height: 1.25;
+  }
+
+  .sim-performance-dock {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    justify-content: center;
+  }
+
+  .sim-dock-pill {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .dock-pill-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dock-pill-tag {
+    font-size: 0.60rem;
+  }
+
+  .dock-pill-val {
+    font-size: 0.72rem;
   }
 
   /* Features Grid */
@@ -1969,50 +1983,93 @@ a {
    GPTMAKER-INSPIRED MOTION & HIGH-END TECH AESTHETICS (v4.0)
 ============================================================================== */
 
-/* --- 1. MOBILE SIMULATOR STATUS PILLS --- */
-.mobile-sim-pills {
-  display: none;
-  flex-wrap: wrap;
+/* --- 1. SIMULATOR PERFORMANCE DOCK (CLEAN BASE BELOW THE PHONE) --- */
+.sim-performance-dock {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 12px;
   width: 100%;
+  margin-top: 18px;
+  position: relative;
+  z-index: 2;
 }
 
-.mobile-pill {
-  display: inline-flex;
+.sim-dock-pill {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  gap: 10px;
+  padding: 8px 14px;
   background: rgba(16, 24, 39, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-full);
-  font-size: 0.74rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.sim-dock-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(22, 33, 54, 0.95);
+}
+
+.dock-pill-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.dock-pill-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dock-pill-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-accent);
+  line-height: 1.1;
+}
+
+.dock-pill-val {
+  font-size: 0.78rem;
   font-weight: 600;
-  color: var(--text-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 /* --- 2. HERO VISUAL ENGINE & AMBIENT GLOW --- */
 .hero-visual-engine {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
 .engine-radial-glow {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 130%;
-  height: 130%;
-  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.22) 0%, rgba(6, 182, 212, 0.12) 40%, transparent 70%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.20) 0%, rgba(6, 182, 212, 0.10) 40%, transparent 70%);
   filter: blur(40px);
   z-index: 0;
   pointer-events: none;
@@ -2021,126 +2078,7 @@ a {
 
 @keyframes glow-pulse {
   0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
-  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-}
-
-.engine-circuit-svg {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: calc(100% + 40px);
-  height: calc(100% + 40px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.circuit-flow {
-  stroke: url(#flowGrad);
-  stroke-width: 2;
-  stroke-dasharray: 8 16;
-  fill: none;
-  opacity: 0.65;
-  filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.6));
-}
-
-.flow-top {
-  animation: flow-dash 12s linear infinite;
-}
-
-.flow-bottom {
-  animation: flow-dash 15s linear infinite reverse;
-}
-
-@keyframes flow-dash {
-  to { stroke-dashoffset: -200; }
-}
-
-/* --- 3. FLOATING BADGES (Physics Levitation / hs-float) --- */
-.floating-badge {
-  position: absolute;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  background: rgba(16, 24, 39, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-full);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.2);
-  pointer-events: auto;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.floating-badge:hover {
-  transform: scale(1.05) translateY(-4px) !important;
-  border-color: rgba(99, 102, 241, 0.5);
-}
-
-.badge-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.badge-tag {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-accent);
-}
-
-.badge-text {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.badge-icon {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  color: var(--accent-cyan);
-}
-
-/* Positions & Staggered Levitation Animations (Zero Header Clipping) */
-.badge-audio {
-  top: 14px;
-  left: -24px;
-  animation: float-1 4.5s ease-in-out infinite;
-}
-
-.badge-calendar {
-  top: 64px;
-  right: -28px;
-  animation: float-2 5.2s ease-in-out infinite 0.6s;
-}
-
-.badge-speed {
-  bottom: 60px;
-  left: -26px;
-  animation: float-3 4.8s ease-in-out infinite 1.2s;
-}
-
-@keyframes float-1 {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(-1deg); }
-}
-
-@keyframes float-2 {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-7px) rotate(1.2deg); }
-}
-
-@keyframes float-3 {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(-1deg); }
+  100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
 }
 
 /* Animated Sound Wave Equalizer */
