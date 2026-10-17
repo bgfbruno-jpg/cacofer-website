@@ -379,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lastSubmissionTime = now;
 
-      // Dual Capture: Asynchronously persist lead into Cacofer CRM database via /api/lead
+      // Dual Capture: Asynchronously persist lead into database via /api/lead
       try {
         fetch("/api/lead", {
           method: "POST",
@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
             source: "WEBSITE_FORM"
           })
         }).catch((err) => {
-          console.warn("[CRM Capture Note] Async background sync dispatched:", err);
+          console.warn("[Lead Capture Note] Async background sync dispatched:", err);
         });
       } catch (e) {}
 
