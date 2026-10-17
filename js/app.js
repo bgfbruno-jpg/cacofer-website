@@ -47,7 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainNav = document.getElementById("mainNav");
 
   if (mobileToggle && mainNav) {
-    mobileToggle.addEventListener("click", () => {
+    mobileToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
       const isOpen = mainNav.classList.toggle("is-open");
       mobileToggle.setAttribute("aria-expanded", isOpen);
       mobileToggle.textContent = isOpen ? "✕" : "☰";
@@ -56,12 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close menu on link click
     mainNav.querySelectorAll(".nav-link, .nav-cta-btn").forEach((link) => {
       link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 1080) {
           mainNav.classList.remove("is-open");
           mobileToggle.textContent = "☰";
           mobileToggle.setAttribute("aria-expanded", "false");
         }
       });
+    });
+
+    // Close menu on click/tap outside
+    document.addEventListener("click", (e) => {
+      if (mainNav.classList.contains("is-open") && !mainNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+        mainNav.classList.remove("is-open");
+        mobileToggle.textContent = "☰";
+        mobileToggle.setAttribute("aria-expanded", "false");
+      }
     });
   }
 
@@ -80,22 +90,34 @@ document.addEventListener("DOMContentLoaded", () => {
         "Boa tarde! Tudo bem? Sou a Sofia, concierge da clínica. O procedimento depende de avaliação prévia da Dra. Nossa consulta de avaliação é R$ 150 (100% dedutível se realizar o tratamento). Tenho vaga para amanhã às 14h ou sexta às 10h, qual fica melhor para você?",
     },
     audio: {
-      userText: "🎙️ [Áudio de 18s]: 'Oi Sofia, moro longe, como faço para chegar aí de carro?'",
+      userText: "🎙️ [Áudio de 18s]: 'Oi Sofia, moro longe, como faço para chegar de carro e onde estaciono?'",
       isAudio: true,
       botResponse:
-        "Olá! Nosso espaço fica no Edifício Prime Design Offices, na Estrada Cel. Pedro Corrêa, 740 (Sala 327) - Barra Olímpica. O prédio conta com estacionamento rotativo e segurança 24h. Seguem os links direto do Waze e Google Maps para você abrir agora no GPS!",
+        "Olá! Nosso espaço fica no Edifício Prime Design Offices, na Estrada Coronel Pedro Corrêa, 740 (Sala 327) - Barra Olímpica. O prédio conta com estacionamento rotativo com manobrista e segurança 24h. Seguem os links direto do Waze e Google Maps para você abrir agora no GPS!",
+    },
+    humano: {
+      userText: "Quero tirar uma dúvida urgente com a doutora direto.",
+      isAudio: false,
+      botResponse:
+        "Com certeza! Notifiquei a Dra. Edna no WhatsApp pessoal dela com o resumo da conversa e pausei meu atendimento. Ela vai te responder por aqui em instantes!",
+    },
+    regua: {
+      userText: "Oi, recebi a mensagem de confirmação da minha consulta de amanhã. Tá confirmadíssimo!",
+      isAudio: false,
+      botResponse:
+        "Perfeito! Presença confirmada para amanhã às 14h na agenda da Dra. Edna! Venha com a pele limpa e evite álcool hoje. Estacionamento rotativo no local. Até amanhã!",
+    },
+    noturno: {
+      userText: "Boa noite! É meia-noite mas queria já deixar marcado antes de esquecer amanhã cedo.",
+      isAudio: false,
+      botResponse:
+        "Boa noite! Que ótimo que entrou em contato! Já consultei a grade ao vivo da Dra. Edna. Tenho horário disponível amanhã às 10h ou às 15h30, qual prefere que eu reserve para você?",
     },
     cancelamento: {
       userText: "Tive um imprevisto e preciso desmarcar meu horário de amanhã.",
       isAudio: false,
       botResponse:
         "Sem problemas! Compreendo perfeitamente. O seu horário já foi liberado da agenda médica com sucesso. Gostaria de remarcar para a próxima semana em algum dia específico?",
-    },
-    humano: {
-      userText: "Quero falar com uma pessoa de verdade da recepção.",
-      isAudio: false,
-      botResponse:
-        "Com certeza! Já notifiquei a recepção da clínica e pausei minhas respostas temporariamente. A nossa equipe entrará em contato com você por aqui em instantes!",
     },
   };
 
@@ -152,6 +174,58 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1200);
     });
   });
+
+
+  /* ==========================================================================
+     INTERACTIVE AUDIO DEMO (Bento Card 1)
+  ========================================================================== */
+  const audioDemoBtn = document.getElementById("audioDemoBtn");
+  const waveLines = document.querySelectorAll(".audio-wave-bars .wave-line");
+  const audioTranscript = document.getElementById("audioTranscript");
+
+  if (audioDemoBtn) {
+    let isPlaying = false;
+    audioDemoBtn.addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      const playIcon = audioDemoBtn.querySelector(".play-icon");
+      if (playIcon) {
+        playIcon.textContent = isPlaying ? "⏸" : "▶";
+      }
+      waveLines.forEach((line) => {
+        if (isPlaying) {
+          line.classList.add("active");
+        } else {
+          line.classList.remove("active");
+        }
+      });
+      if (audioTranscript) {
+        audioTranscript.style.opacity = isPlaying ? "1" : "0.75";
+      }
+    });
+  }
+
+  /* ==========================================================================
+     IMPACT NUMBERS ANIMATION (Intersection Observer)
+  ========================================================================== */
+  const impactNumbers = document.querySelectorAll(".impact-number");
+  if ("IntersectionObserver" in window && impactNumbers.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.transform = "scale(1.06)";
+            entry.target.style.transition = "transform 0.4s ease";
+            setTimeout(() => {
+              entry.target.style.transform = "scale(1)";
+            }, 400);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    impactNumbers.forEach((num) => observer.observe(num));
+  }
 
   /* ==========================================================================
      4. INTERACTIVE ROI CALCULATOR
@@ -266,17 +340,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const nameInput = document.getElementById("leadName");
       const companyInput = document.getElementById("leadCompany");
       const phoneInput = document.getElementById("leadPhone");
+      const emailInput = document.getElementById("leadEmail");
       const segmentInput = document.getElementById("leadSegment");
       const consentCheck = document.getElementById("leadConsent");
 
       const rawName = nameInput ? nameInput.value : "";
       const rawCompany = companyInput ? companyInput.value : "";
       const rawPhone = phoneInput ? phoneInput.value : "";
+      const rawEmail = emailInput ? emailInput.value : "";
       const rawSegment = segmentInput ? segmentInput.value : "";
 
       const cleanName = sanitizeText(rawName);
       const cleanCompany = sanitizeText(rawCompany);
       const cleanPhone = sanitizeText(rawPhone);
+      const cleanEmail = sanitizeText(rawEmail).toLowerCase();
       const cleanSegment = sanitizeText(rawSegment);
 
       // Validation
@@ -287,6 +364,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!validateBRPhone(cleanPhone)) {
         displayFormMessage("Por favor, informe um WhatsApp válido com DDD (ex: 21999999999).", "error");
+        return;
+      }
+
+      if (!cleanEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+        displayFormMessage("Por favor, informe um e-mail corporativo válido.", "error");
         return;
       }
 
@@ -302,10 +384,12 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          keepalive: true,
           body: JSON.stringify({
             full_name: cleanName,
             company_name: cleanCompany,
             phone: cleanPhone,
+            email: cleanEmail,
             segment: cleanSegment,
             submitted_at: new Date().toISOString(),
             source: "WEBSITE_FORM"
@@ -315,25 +399,64 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       } catch (e) {}
 
-      // Construct encrypted/sanitized message for direct WhatsApp connection
+      const digitsOnly = cleanPhone.replace(/\D/g, "");
+      const displayPhone = digitsOnly.length === 11 
+        ? `(${digitsOnly.slice(0,2)}) ${digitsOnly.slice(2,7)}-${digitsOnly.slice(7)}` 
+        : cleanPhone;
+
+      // Construct clean, professional message for direct WhatsApp connection
       const whatsAppMessage = encodeURIComponent(
-        `Olá, Bruno! Gostaria de agendar uma demonstração gratuita da Concierge IA da Cacofer Tecnologia.\n\n` +
-        `👤 *Nome:* ${cleanName}\n` +
-        `🏢 *Empresa/Clínica:* ${cleanCompany || "Não informado"}\n` +
-        `📱 *WhatsApp:* ${cleanPhone}\n` +
-        `🩺 *Ramo:* ${cleanSegment || "Clínica/Saúde"}`
+        `Olá! Vim pelo site da Cacofer Tecnologia e gostaria de agendar uma demonstração.\n\n` +
+        `*Nome:* ${cleanName}\n` +
+        `*Empresa:* ${cleanCompany || "Não informado"}\n` +
+        `*WhatsApp:* ${displayPhone}\n` +
+        `*E-mail:* ${cleanEmail}\n` +
+        `*Segmento:* ${cleanSegment || "Geral"}`
       );
 
-      // Primary destination: Cacofer Official WhatsApp (Bruno)
+      // Primary destination: Cacofer Official WhatsApp (Bruno / Lucas SDR)
       const officialPhone = "5521988964486";
       const targetUrl = `https://wa.me/${officialPhone}?text=${whatsAppMessage}`;
 
-      displayFormMessage("Diagnóstico recebido com sucesso! Abrindo WhatsApp oficial da Cacofer Tecnologia...", "success");
+      // Disable submit button to prevent double-click
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Conectando ao WhatsApp...</span>`;
+      }
 
-      setTimeout(() => {
-        window.open(targetUrl, "_blank", "noopener,noreferrer");
-      }, 1000);
+      // Display rich confirmation with direct fallback button
+      displaySuccessWithRedirect(cleanName, cleanCompany, cleanEmail, targetUrl);
+
+      // Direct top-level navigation (100% immune to popup blockers on iOS Safari / Android Chrome)
+      window.location.href = targetUrl;
     });
+  }
+
+  function displaySuccessWithRedirect(name, company, email, targetUrl) {
+    if (!formStatus) return;
+    const firstName = name.split(" ")[0];
+    const companyDisplay = company ? `da <strong>${company}</strong>` : "do seu negócio";
+    formStatus.innerHTML = `
+      <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 22px 18px; text-align: center; margin-top: 16px;">
+        <div style="font-size: 1.25rem; font-weight: 700; color: #34d399; margin-bottom: 8px;">
+          ✅ Solicitação Recebida com Sucesso!
+        </div>
+        <p style="color: #f1f5f9; font-size: 1rem; margin-bottom: 8px; line-height: 1.5;">
+          Olá, <strong>${firstName}</strong>! Nosso especialista <strong>Lucas</strong> acabou de enviar uma mensagem para o seu WhatsApp para agendar a demonstração ${companyDisplay}.
+        </p>
+        <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 18px;">
+          O convite com a sala do Google Meet também será enviado para <strong>${email}</strong>.
+        </p>
+        <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #ffffff; font-weight: 700; font-size: 1.05rem; padding: 16px 32px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); transition: transform 0.2s ease;">
+          <span>📲 Abrir Conversa no WhatsApp com Lucas</span>
+        </a>
+      </div>
+    `;
+    formStatus.style.display = "block";
+    formStatus.style.padding = "0";
+    formStatus.style.background = "transparent";
+    formStatus.style.border = "none";
   }
 
   function displayFormMessage(msg, type) {
