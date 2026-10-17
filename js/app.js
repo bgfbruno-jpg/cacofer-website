@@ -446,7 +446,7 @@ document.addEventListener("DOMContentLoaded", () => {
           Olá, <strong>${firstName}</strong>! Nosso especialista <strong>Lucas</strong> acabou de enviar uma mensagem para o seu WhatsApp para agendar a demonstração ${companyDisplay}.
         </p>
         <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 18px;">
-          O convite com a sala do Google Meet também será enviado para <strong>${email}</strong>.
+          O resumo da solicitação e os detalhes técnicos de contato também foram enviados para <strong>${email}</strong>.
         </p>
         <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #ffffff; font-weight: 700; font-size: 1.05rem; padding: 16px 32px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); transition: transform 0.2s ease;">
           <span>📲 Abrir Conversa no WhatsApp com Lucas</span>
