@@ -262,7 +262,7 @@ a {
    HERO SECTION
 ============================================================================== */
 .hero-section {
-  padding: 138px 0 80px;
+  padding: 94px 0 60px;
   position: relative;
   overflow: visible;
 }
@@ -305,17 +305,19 @@ a {
 }
 
 .hero-title {
-  font-size: 3.2rem;
+  font-size: clamp(2.3rem, 3.8vw, 3.2rem);
   letter-spacing: -0.035em;
   margin-bottom: 20px;
-  line-height: 1.12;
+  line-height: 1.18;
 }
 
 .hero-subtitle {
-  font-size: 1.18rem;
+  font-size: 1.15rem;
   color: var(--text-secondary);
   margin-bottom: 34px;
-  line-height: 1.6;
+  line-height: 1.65;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .hero-actions {
@@ -640,6 +642,7 @@ a {
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .feature-card:hover {
@@ -659,7 +662,7 @@ a {
   align-items: center;
   justify-content: center;
   color: var(--accent-cyan);
-  margin-bottom: 22px;
+  margin: 0 auto 22px;
   transition: all var(--transition-fast);
 }
 
@@ -672,21 +675,24 @@ a {
 .feature-card h3 {
   font-size: 1.25rem;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .feature-card p {
   font-size: 0.92rem;
-  line-height: 1.6;
+  line-height: 1.65;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .feature-badge {
   display: inline-block;
-  margin-top: 16px;
+  margin: 16px auto 0;
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--accent-emerald);
   background: rgba(16, 185, 129, 0.1);
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
 }
 
@@ -886,6 +892,7 @@ a {
   flex-direction: column;
   position: relative;
   transition: all var(--transition-normal);
+  text-align: center;
 }
 
 .pricing-card:hover {
@@ -925,19 +932,23 @@ a {
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 6px;
+  text-align: center;
 }
 
 .plan-desc {
   font-size: 0.88rem;
   color: var(--text-muted);
-  margin-bottom: 24px;
+  margin: 0 auto 20px;
+  max-width: 280px;
   min-height: 42px;
+  text-align: center;
 }
 
 .plan-price-wrap {
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
 }
 
 .price-currency {
@@ -960,13 +971,24 @@ a {
   color: var(--text-muted);
 }
 
+.plan-setup-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: -6px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
 .plan-features-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-bottom: 34px;
+  margin: 0 auto 34px;
+  max-width: 290px;
+  width: 100%;
   flex: 1;
+  text-align: left;
 }
 
 .plan-features-list li {
@@ -1035,15 +1057,18 @@ a {
   border-radius: var(--radius-md);
   padding: 30px;
   position: relative;
+  text-align: center;
 }
 
 .security-card h3 {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-size: 1.15rem;
   margin-bottom: 12px;
   color: #ffffff;
+  text-align: center;
 }
 
 .security-card h3 svg {
@@ -1052,7 +1077,9 @@ a {
 
 .security-card p {
   font-size: 0.88rem;
-  line-height: 1.6;
+  line-height: 1.65;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* ==============================================================================
