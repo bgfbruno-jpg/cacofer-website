@@ -1271,8 +1271,8 @@ a {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
+  gap: 36px;
   margin-bottom: 40px;
 }
 
